@@ -1,7 +1,7 @@
 import { handleHosting } from "./host.js";
 import { handleClient } from "./client.js";
 
-const ws = new WebSocket("ws://localhost:8080");
+const ws = new WebSocket("wss://www.sigmachat.cc");
 
 ws.addEventListener("message", (msg) => {
   const data = JSON.parse(msg.data);
@@ -39,10 +39,14 @@ async function onHostStart() {
   document.body.appendChild(video);
   const mediaConstraints = {
     audio: true, // We want an audio track
-    video: true, // And we want a video track
+    video: {
+    width: { ideal: 1920 },
+    height: { ideal: 1080 },
+    frameRate: { ideal: 60, max: 60 }
+  }, // And we want a video track
   };
   const localStream =
-    await navigator.mediaDevices.getDisplayMedia(mediaConstraints);
+    await navigator.mediaDevices.getUserMedia(mediaConstraints);
   video.srcObject = localStream;
 
   console.log(localStream);

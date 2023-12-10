@@ -3,9 +3,12 @@ export async function handleClient(ws) {
 
   const myPeerConnection = new RTCPeerConnection({
     iceServers: [
-      {
-        urls: "stun:stun.stunprotocol.org",
-      },
+        {
+          urls: "stun:stun.l.google.com:19302",
+        },
+        {
+          urls: "stun:stun1.l.google.com:19302",
+        },
     ],
   });
 

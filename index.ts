@@ -2,6 +2,7 @@ import type { WebSocket } from "ws";
 import { WebSocketServer } from "ws";
 import { z } from "zod";
 import * as crypto from "crypto";
+import express from "express";
 
 const MessageSchema = z.object({
   type: z.enum([
@@ -73,6 +74,15 @@ const sendUpdateMessage = () => {
     updateSocketsOnConnections(socket)(hosts);
   });
 };
+
+const app = express();
+const port = 3000;
+
+app.use(express.static("public"));
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
 
 wss.on("connection", function connection(ws) {
   const id = crypto.randomUUID();

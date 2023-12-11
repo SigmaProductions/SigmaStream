@@ -20,7 +20,7 @@ ws.addEventListener("message", (msg) => {
 });
 
 async function onStreamJoin(streamId) {
-  document.body.innerHTML = `<video></video>`;
+  document.body.innerHTML = `<video controls autoplay></video>`;
   await handleClient(ws);
 
   const payload = {
@@ -40,10 +40,10 @@ async function onHostStart() {
   const mediaConstraints = {
     audio: true, // We want an audio track
     video: {
-    width: { ideal: 1920 },
-    height: { ideal: 1080 },
-    frameRate: { ideal: 60, max: 60 }
-  }, // And we want a video track
+      width: { ideal: 1920 },
+      height: { ideal: 1080 },
+      frameRate: { ideal: 60, max: 60 },
+    }, // And we want a video track
   };
   const localStream =
     await navigator.mediaDevices.getUserMedia(mediaConstraints);

@@ -19,7 +19,10 @@ export async function handleHosting(ws, localStream) {
     const peerConn = new RTCPeerConnection({
       iceServers: [
         {
-          urls: "stun:stun.stunprotocol.org",
+          urls: "stun:stun.l.google.com:19302",
+        },
+        {
+          urls: "stun:stun1.l.google.com:19302",
         },
       ],
     });
